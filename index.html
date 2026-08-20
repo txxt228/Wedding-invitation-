@@ -1,334 +1,121 @@
-tl">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>دعوة زفاف ياسمين وأحمد</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Amiri:ital,wght@0,400;0,700;1,400&family=Aref+Ruqaa:wght@400;700&family=Cairo:wght@300;400;600;700&display=swap" rel="stylesheet">
-<style>
-  * {
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
-    -webkit-tap-highlight-color: transparent;
-  }
 
-  body {
-    font-family: 'Cairo', sans-serif;
-    background-color: #1a1a1a;
-    color: #4a4a4a;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    min-height: 100vh;
-  }
 
-  .mobile-container {
-    width: 100%;
-    max-width: 430px;
-    height: 100vh;
-    max-height: 932px;
-    background: #fbf9f5;
-    position: relative;
-    overflow-y: auto;
-    overflow-x: hidden;
-    scroll-behavior: smooth;
-    scroll-snap-type: y mandatory;
-    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
-  }
-
-  section {
-    scroll-snap-align: start;
-    min-height: 100vh;
-    width: 100%;
-    position: relative;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    padding: 40px 24px;
-    background-color: #fbf9f5;
-    background-image: 
-      radial-gradient(circle at 50% 50%, rgba(212, 175, 55, 0.08) 0%, transparent 60%),
-      radial-gradient(circle at 0% 0%, rgba(197, 160, 89, 0.15) 0%, transparent 40%),
-      radial-gradient(circle at 100% 100%, rgba(197, 160, 89, 0.15) 0%, transparent 40%);
-  }
-
-  .frame-border {
-    position: absolute;
-    top: 15px; bottom: 15px; left: 15px; right: 15px;
-    border: 1px solid rgba(212, 175, 55, 0.4);
-    border-radius: 20px;
-    pointer-events: none;
-    z-index: 10;
-  }
-
-  .frame-border::before {
-    content: '';
-    position: absolute;
-    top: 4px; bottom: 4px; left: 4px; right: 4px;
-    border: 1px dashed rgba(212, 175, 55, 0.25);
-    border-radius: 16px;
-  }
-
-  #hero {
-    text-align: center;
-  }
-
-  .interactive-seal {
-    width: 230px;
-    height: 230px;
-    border-radius: 50%;
-    background: rgba(255, 255, 255, 0.92);
-    backdrop-filter: blur(10px);
-    border: 2px solid #d4af37;
-    box-shadow: 0 20px 40px rgba(180, 150, 90, 0.25), inset 0 0 15px rgba(212, 175, 55, 0.15);
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    cursor: pointer;
-    transition: all 0.4s ease;
-    animation: pulseGlow 2.5s infinite alternate;
-    text-decoration: none;
-    padding: 20px;
-    z-index: 2;
-  }
-
-  .interactive-seal:hover, .interactive-seal:active {
-    transform: scale(1.06);
-    box-shadow: 0 25px 50px rgba(180, 150, 90, 0.4);
-  }
-
-  @keyframes pulseGlow {
-    0% { transform: scale(1); box-shadow: 0 10px 25px rgba(180, 150, 90, 0.2); }
-    100% { transform: scale(1.03); box-shadow: 0 20px 40px rgba(212, 175, 55, 0.4); }
-  }
-
-  .seal-names {
-    font-family: 'Aref Ruqaa', serif;
-    font-size: 2.2rem;
-    color: #2c2c2c;
-    line-height: 1.3;
-    font-weight: 700;
-  }
-
-  .seal-names span {
-    color: #c5a059;
-    font-size: 1.5rem;
-    display: block;
-    margin: 2px 0;
-  }
-
-  .seal-btn {
-    font-size: 0.85rem;
-    color: #8c733e;
-    letter-spacing: 1px;
-    font-weight: 600;
-    margin-top: 12px;
-    background: rgba(212, 175, 55, 0.1);
-    padding: 4px 12px;
-    border-radius: 20px;
-  }
-
-  .card-box {
-    background: rgba(255, 255, 255, 0.92);
-    backdrop-filter: blur(12px);
-    border-radius: 24px;
-    padding: 35px 22px;
-    border: 1px solid rgba(212, 175, 55, 0.35);
-    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.05);
-    width: 100%;
-    z-index: 2;
-  }
-
-  .bismillah {
-    font-family: 'Amiri', serif;
-    font-size: 1.4rem;
-    color: #8c733e;
-    margin-bottom: 18px;
-    font-weight: 700;
-  }
-
-  .invitation-text {
-    font-size: 1.05rem;
-    color: #555;
-    line-height: 1.9;
-    margin-bottom: 20px;
-  }
-
-  .couple-title {
-    font-family: 'Aref Ruqaa', serif;
-    font-size: 2.6rem;
-    color: #222;
-    margin: 15px 0;
-    text-shadow: 1px 1px 2px rgba(0,0,0,0.05);
-  }
-
-  .date-badge {
-    display: inline-block;
-    background: #f7f3e9;
-    border: 1px dashed #c5a059;
-    padding: 10px 22px;
-    border-radius: 50px;
-    color: #6a5323;
-    font-weight: 700;
-    margin-top: 10px;
-    font-size: 1rem;
-  }
-
-  .section-heading {
-    font-family: 'Aref Ruqaa', serif;
-    font-size: 2rem;
-    color: #2c2c2c;
-    margin-bottom: 20px;
-  }
-
-  .countdown-container {
-    display: flex;
-    justify-content: center;
-    gap: 10px;
-    margin: 20px 0;
-    direction: ltr;
-  }
-
-  .time-block {
-    background: #ffffff;
-    border: 1px solid #e2d9c8;
-    border-radius: 16px;
-    padding: 12px 8px;
-    min-width: 68px;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.03);
-  }
-
-  .time-number {
-    font-size: 1.5rem;
-    font-weight: 700;
-    color: #a38139;
-  }
-
-  .time-label {
-    font-size: 0.75rem;
-    color: #888;
-    margin-top: 4px;
-  }
-
-  .btn-action {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    gap: 8px;
-    background: linear-gradient(135deg, #d4af37 0%, #aa820a 100%);
-    color: white;
-    text-decoration: none;
-    padding: 15px 28px;
-    border-radius: 50px;
-    font-weight: 700;
-    font-size: 1.05rem;
-    box-shadow: 0 10px 25px rgba(170, 130, 10, 0.35);
-    border: none;
-    cursor: pointer;
-    width: 100%;
-    margin-top: 15px;
-    transition: transform 0.2s ease;
-  }
-
-  .btn-action:active {
-    transform: scale(0.98);
-  }
-</style>
-</head>
-<body>
-
-  <div class="mobile-container">
-    <section id="hero">
-      <div class="frame-border"></div>
-      <a href="#details" class="interactive-seal">
-        <div class="seal-names">
-          ياسمين
-          <span>&amp;</span>
-          أحمد
-        </div>
-        <div class="seal-btn">اضغط لفتح الدعوة ↓</div>
-      </a>
-    </section>
-
-    <section id="details">
-      <div class="frame-border"></div>
-      <div class="card-box">
-        <div class="bismillah">بسم الله الرحمن الرحيم</div>
-        <p class="invitation-text">
-          يسرنا ويسعدنا دعوتكم لحضور حفل زفافنا وتكتمل فرحتنا بوجودكم ومشاركتكم أجمَل لحظات العمر.
-        </p>
-        <div class="couple-title">ياسمين &amp; أحمد</div>
-        <div class="date-badge">
-          🗓 السبت، 24 أكتوبر 2026م
-        </div>
-      </div>
-    </section>
-
-    <section id="location">
-      <div class="frame-border"></div>
-      <div class="card-box">
-        <h2 class="section-heading">العد التنازلي للمناسبة</h2>
-        
-        <div class="countdown-container">
-          <div class="time-block">
-            <div class="time-number" id="seconds">00</div>
-            <div class="time-label">ثانية</div>
-          </div>
-          <div class="time-block">
-            <div class="time-number" id="minutes">00</div>
-            <div class="time-label">دقيقة</div>
-          </div>
-          <div class="time-block">
-            <div class="time-number" id="hours">00</div>
-            <div class="time-label">ساعة</div>
-          </div>
-          <div class="time-block">
-            <div class="time-number" id="days">00</div>
-            <div class="time-label">يوم</div>
-          </div>
-        </div>
-
-        <h2 class="section-heading" style="margin-top: 25px;">موقع الحفل</h2>
-        <p style="color: #666; margin-bottom: 15px; font-size: 1rem;">قاعة الرتز - مدينة الرياض</p>
-        
-        <a href="https://maps.google.com" target="_blank" class="btn-action">
-          📍 موقع القاعة على الخريطة
-        </a>
-      </div>
-    </section>
-  </div>
-
-  <script>
-    document.querySelector('.interactive-seal').addEventListener('click', function(e) {
-      e.preventDefault();
-      document.querySelector('#details').scrollIntoView({ behavior: 'smooth' });
-    });
-
-    const targetDate = new Date('2026-10-24T20:00:00').getTime();
-
-    function updateCountdown() {
-      const now = new Date().getTime();
-      const difference = targetDate - now;
-
-      if (difference > 0) {
-        const days = Math.floor(difference / (1000 * 60 * 60 * 24));
-        const hours = Math.floor((difference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-        const minutes = Math.floor((difference % (1000 * 60 * 60)) / (1000 * 60));
-        const seconds = Math.floor((difference % (1000 * 60)) / 1000);
-
-        document.getElementById('days').innerText = days;
-        document.getElementById('hours').innerText = hours;
-        document.getElementById('minutes').innerText = minutes;
-        document.getElementById('seconds').innerText = seconds;
-      }
-    }
-
-    setInterval(updateCountdown, 1000);
-    updateCountdown();
-  </script>
-</body>
-</html>
+‏<!DOCTYPE html>
+‏<html lang="ar" dir="rtl">
+‏<head>
+‏<meta charset="UTF-8">
+‏<meta name="viewport" content="width=device-width, initial-scale=1.0">
+‏<title>دعوة زفاف ياسمين وأحمد</title>
+‏<link rel="preconnect" href="[https://fonts.googleapis.com](https://fonts.googleapis.com)">
+‏<link rel="preconnect" href="[https://fonts.gstatic.com](https://fonts.gstatic.com)" crossorigin>
+‏<link href="[https://fonts.googleapis.com/css2?family=Amiri:ital,wght@0,400;0,700;1,400&family=Aref+Ruqaa:wght@400;700&family=Cairo:wght@300;400;600;700&display=swap](https://fonts.googleapis.com/css2?family=Amiri:ital,wght@0,400;0,700;1,400&family=Aref+Ruqaa:wght@400;700&family=Cairo:wght@300;400;600;700&display=swap)" rel="stylesheet">
+‏<style>
+‏ { box-sizing: border-box; margin: 0; padding: 0; -webkit-tap-highlight-color: transparent; }
+‏body { font-family: 'Cairo', sans-serif; background-color: #121212; color: #4a4a4a; display: flex; justify-content: center; align-items: center; min-height: 100vh; padding: 0; }
+‏.mobile-container { width: 100%; max-width: 430px; height: 100vh; max-height: 932px; background-color: #f7f5f0; position: relative; overflow-y: auto; overflow-x: hidden; scroll-behavior: smooth; scroll-snap-type: y mandatory; box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5); }
+‏section { scroll-snap-align: start; min-height: 100vh; width: 100%; position: relative; display: flex; flex-direction: column; justify-content: center; align-items: center; padding: 40px 24px; background-size: cover; background-position: center; background-repeat: no-repeat; }
+‏#hero { background-image: url('https://i.ibb.co/L5hYy1B/wedding-bg.png'); position: relative; text-align: center; }
+‏.hero-overlay { position: absolute; top: 0; left: 0; right: 0; bottom: 0; background: rgba(247, 245, 240, 0.25); z-index: 1; }
+‏.hero-content { position: relative; z-index: 2; display: flex; flex-direction: column; align-items: center; justify-content: center; width: 100%; height: 100%; }
+‏.interactive-seal { width: 220px; height: 220px; border-radius: 50%; background: rgba(255, 255, 255, 0.85); backdrop-filter: blur(10px); border: 2px solid #d4af37; box-shadow: 0 15px 35px rgba(180, 150, 90, 0.25); display: flex; flex-direction: column; align-items: center; justify-content: center; cursor: pointer; transition: transform 0.4s ease, box-shadow 0.4s ease; animation: pulseGlow 3s infinite alternate; text-decoration: none; padding: 20px; }
+‏.interactive-seal:hover, .interactive-seal:active { transform: scale(1.08); box-shadow: 0 20px 40px rgba(180, 150, 90, 0.4); }
+‏@keyframes pulseGlow { 0% { box-shadow: 0 10px 25px rgba(180, 150, 90, 0.2); } 100% { box-shadow: 0 18px 35px rgba(180, 150, 90, 0.35); } }
+‏.seal-names { font-family: 'Aref Ruqaa', serif; font-size: 1.8rem; color: #3a3a3a; line-height: 1.4; margin-bottom: 6px; }
+‏.seal-names span { color: #c5a059; font-size: 1.3rem; }
+‏.seal-btn { font-size: 0.85rem; color: #777; letter-spacing: 2px; font-weight: 600; margin-top: 8px; }
+‏#details { background: linear-gradient(180deg, #f7f5f0 0%, #eae5d9 100%); text-align: center; }
+‏.card-box { background: rgba(255, 255, 255, 0.9); backdrop-filter: blur(8px); border-radius: 20px; padding: 35px 25px; border: 1px solid rgba(212, 175, 55, 0.3); box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05); width: 100%; }
+‏.bismillah { font-family: 'Amiri', serif; font-size: 1.2rem; color: #8c733e; margin-bottom: 20px; }
+‏.invitation-text { font-size: 1.05rem; color: #555; line-height: 1.8; margin-bottom: 25px; }
+‏.couple-title { font-family: 'Aref Ruqaa', serif; font-size: 2.3rem; color: #2c2c2c; margin: 15px 0; }
+‏.date-badge { display: inline-block; background: #f4efe4; border: 1px dashed #c5a059; padding: 10px 20px; border-radius: 50px; color: #6a5323; font-weight: 600; margin-top: 15px; font-size: 0.95rem; }
+‏#location { background: #f7f5f0; text-align: center; }
+‏.section-heading { font-family: 'Aref Ruqaa', serif; font-size: 1.8rem; color: #333; margin-bottom: 20px; }
+‏.countdown-container { display: flex; justify-content: center; gap: 12px; margin: 25px 0; direction: ltr; }
+‏.time-block { background: #ffffff; border: 1px solid #e2d9c8; border-radius: 12px; padding: 12px; min-width: 65px; }
+‏.time-number { font-size: 1.4rem; font-weight: 700; color: #a38139; }
+‏.time-label { font-size: 0.75rem; color: #888; margin-top: 4px; }
+‏.btn-action { display: inline-flex; align-items: center; justify-content: center; gap: 8px; background: linear-gradient(135deg, #d4af37 0%, #aa820a 100%); color: white; text-decoration: none; padding: 14px 28px; border-radius: 50px; font-weight: 600; font-size: 1rem; box-shadow: 0 8px 20px rgba(170, 130, 10, 0.3); border: none; cursor: pointer; width: 100%; margin-top: 15px; }
+‏</style>
+‏</head>
+‏<body>
+‏<div class="mobile-container">
+‏<section id="hero">
+‏<div class="hero-overlay"></div>
+‏<div class="hero-content">
+‏<a href="#details" class="interactive-seal">
+‏<div class="seal-names">
+ياسمين
+‏<span>&</span>
+أحمد
+‏</div>
+‏<div class="seal-btn">افتح الدعوة ↓</div>
+‏</a>
+‏</div>
+‏</section>
+‏<section id="details">
+‏<div class="card-box">
+‏<div class="bismillah">بسم الله الرحمن الرحيم</div>
+‏<p class="invitation-text">
+يسرنا ويسعدنا دعوتكم لحضور حفل زفافنا وتكتمل فرحتنا بوجودكم ومشاركتكم أجمَل لحظات العمر.
+‏</p>
+‏<div class="couple-title">ياسمين & أحمد</div>
+‏<div class="date-badge">
+🗓 السبت، 24 أكتوبر 2026م
+‏</div>
+‏</div>
+‏</section>
+‏<section id="location">
+‏<div class="card-box">
+‏<h2 class="section-heading">العد التنازلي للمناسبة</h2>
+‏<div class="countdown-container">
+‏<div class="time-block">
+‏<div class="time-number" id="seconds">00</div>
+‏<div class="time-label">ثانية</div>
+‏</div>
+‏<div class="time-block">
+‏<div class="time-number" id="minutes">00</div>
+‏<div class="time-label">دقيقة</div>
+‏</div>
+‏<div class="time-block">
+‏<div class="time-number" id="hours">00</div>
+‏<div class="time-label">ساعة</div>
+‏</div>
+‏<div class="time-block">
+‏<div class="time-number" id="days">00</div>
+‏<div class="time-label">يوم</div>
+‏</div>
+‏</div>
+‏<h2 class="section-heading" style="margin-top: 30px;">موقع الحفل</h2>
+‏<p style="color: #666; margin-bottom: 15px; font-size: 0.95rem;">قاعة الرتز - مدينة الرياض</p>
+‏<a href="[https://maps.google.com](https://maps.google.com)" target="_blank" class="btn-action">
+📍 موقع القاعة على الخريطة
+‏</a>
+‏</div>
+‏</section>
+‏</div>
+‏<script>
+‏document.querySelector('.interactive-seal').addEventListener('click', function(e) {
+‏e.preventDefault();
+‏document.querySelector('#details').scrollIntoView({ behavior: 'smooth' });
+});
+‏const targetDate = new Date('2026-10-24T20:00:00').getTime();
+‏function updateCountdown() {
+‏const now = new Date().getTime();
+‏const difference = targetDate - now;
+‏if (difference > 0) {
+‏const days = Math.floor(difference / (1000 * 60 * 60 * 24));
+‏const hours = Math.floor((difference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+‏const minutes = Math.floor((difference % (1000 * 60 * 60)) / (1000 * 60));
+‏const seconds = Math.floor((difference % (1000 * 60)) / 1000);
+‏document.getElementById('days').innerText = days;
+‏document.getElementById('hours').innerText = hours;
+‏document.getElementById('minutes').innerText = minutes;
+‏document.getElementById('seconds').innerText = seconds;
+}
+}
+‏setInterval(updateCountdown, 1000);
+‏updateCountdown();
+‏</script>
+‏</body>
+‏</html>
