@@ -298,7 +298,7 @@
     </div>
   </div>
 
-  <audio id="bgMusic" loop>
+    <audio id="bgMusic" preload="auto">
     <source src="song.mp3" type="audio/mpeg">
   </audio>
 
@@ -309,11 +309,26 @@
     const audioBtn = document.getElementById('audioBtn');
     let isPlaying = false;
 
+    // تحميل الصوت مسبقاً فور فتح الصفحة
+    window.addEventListener('DOMContentLoaded', () => {
+      bgMusic.load();
+    });
+
     seal.addEventListener('click', () => {
       container.classList.add('open');
-      bgMusic.play().then(() => {
-        isPlaying = true;
-      }).catch(e => console.log("Audio play blocked"));
+      
+      // تشغيل مباشر ومتوافق مع الآيفون والجوالات
+      bgMusic.currentTime = 0;
+      const playPromise = bgMusic.play();
+      
+      if (playPromise !== undefined) {
+        playPromise.then(() => {
+          isPlaying = true;
+          audioBtn.innerText = '🎵';
+        }).catch(error => {
+          console.log("Autoplay failed, user interaction needed:", error);
+        });
+      }
     });
 
     audioBtn.addEventListener('click', () => {
