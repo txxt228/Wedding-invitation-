@@ -414,20 +414,26 @@
     });
 
     // دالة إرسال التهنئة عبر الواتساب
+    f    // دالة إرسال التهنئة المحدثة
     function sendWish() {
       const name = document.getElementById('guestName').value.trim();
       const message = document.getElementById('guestMessage').value.trim();
 
       if (!name || !message) {
-        alert('لطفاً اكتبي اسمكِ والتهنئة أولاً ✨');
+        alert('لطفاً اكتبي اسمكِ والتهنئة  ✨');
         return;
       }
 
+      // غيري هذا الرقم برقم جوالكِ الحقيقي لتدريبه واختباره
+      const bridePhoneNumber = "966535174094"; 
+
       const fullText = `ألف مبروك للعروسين منار وعبدالله ✨\n\nمن: ${name}\nالتهنئة: ${message}`;
-      const whatsappUrl = `https://wa.me/${bridePhoneNumber}?text=${encodeURIComponent(fullText)}`;
+      const whatsappUrl = `https://api.whatsapp.com/send?phone=${bridePhoneNumber}&text=${encodeURIComponent(fullText)}`;
       
-      window.open(whatsappUrl, '_blank');
+      // فتح الواتساب بشكل مباشر لتفادي حظر المتصفح
+      window.location.href = whatsappUrl;
     }
+
 
     // توليد بتلات الورد
     function createPetals() {
