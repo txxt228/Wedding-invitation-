@@ -469,10 +469,10 @@
       }
     }
 
-    // العداد التنازلي
-    const weddingDate = new Date("2026-08-28T20:00:00").getTime();
-
+  // العداد التنازلي
     function updateCountdown() {
+      // تحديد تاريخ الحفل بدقة متوافقة مع كل الأجهزة (28 أغسطس 2026 الساعة 8 مساءً)
+      const weddingDate = new Date(2026, 7, 28, 20, 0, 0).getTime();
       const now = new Date().getTime();
       const difference = weddingDate - now;
 
@@ -482,15 +482,16 @@
         const minutes = Math.floor((difference % (1000 * 60 * 60)) / (1000 * 60));
         const seconds = Math.floor((difference % (1000 * 60)) / 1000);
 
-        document.getElementById("days").innerText = days;
-        document.getElementById("hours").innerText = hours;
-        document.getElementById("minutes").innerText = minutes;
-        document.getElementById("seconds").innerText = seconds;
+        if (document.getElementById("days")) document.getElementById("days").innerText = days;
+        if (document.getElementById("hours")) document.getElementById("hours").innerText = hours;
+        if (document.getElementById("minutes")) document.getElementById("minutes").innerText = minutes;
+        if (document.getElementById("seconds")) document.getElementById("seconds").innerText = seconds;
       }
     }
 
-    setInterval(updateCountdown, 1000);
     updateCountdown();
+    setInterval(updateCountdown, 1000);
+
   </script>
 </body>
 </html>
