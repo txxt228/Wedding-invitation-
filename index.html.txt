@@ -1,0 +1,480 @@
+
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>دعوة زفاف منار وعبدالله</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Aref+Ruqaa:wght@400;700&family=Cairo:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+  * {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  body {
+    font-family: 'Cairo', sans-serif;
+    background-color: #121212;
+    color: #333333;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+  }
+
+  .mobile-container {
+    width: 100%;
+    max-width: 430px;
+    height: 100vh;
+    max-height: 932px;
+    background: #fdfbf7;
+    position: relative;
+    overflow: hidden;
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+  }
+
+  /* خلفية الأبواب الخارجية */
+  .door-left, .door-right {
+    position: absolute;
+    top: 0;
+    width: 50%;
+    height: 100%;
+    background-image: url('outer-bg.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    z-index: 20;
+    transition: transform 1.2s cubic-bezier(0.77, 0, 0.175, 1);
+  }
+
+  .door-left { left: 0; border-left: 2px solid rgba(212, 175, 55, 0.4); }
+  .door-right { right: 0; border-right: 2px solid rgba(212, 175, 55, 0.4); }
+
+  .mobile-container.open .door-left { transform: translateX(-100%); }
+  .mobile-container.open .door-right { transform: translateX(100%); }
+
+  /* الدائرة الذهبية بالوسط */
+  .interactive-seal {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 210px;
+    height: 210px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.95);
+    border: 2px solid #d4af37;
+    box-shadow: 0 10px 30px rgba(212, 175, 55, 0.3);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    z-index: 25;
+    transition: all 0.8s ease;
+    text-align: center;
+  }
+
+  .mobile-container.open .interactive-seal {
+    opacity: 0;
+    visibility: hidden;
+    transform: translate(-50%, -50%) scale(1.2);
+  }
+
+  .seal-names {
+    font-family: 'Aref Ruqaa', serif;
+    font-size: 2.1rem;
+    color: #2c2c2c;
+    line-height: 1.2;
+    font-weight: 700;
+  }
+
+  .seal-names span { color: #c5a059; font-size: 1.3rem; display: block; }
+  .seal-btn { font-size: 0.8rem; color: #8c733e; margin-top: 10px; background: rgba(212, 175, 55, 0.12); padding: 4px 12px; border-radius: 20px; }
+
+  /* المحتوى الداخلي */
+  .main-content {
+    height: 100%;
+    overflow-y: auto;
+    scroll-snap-type: y mandatory;
+    background: linear-gradient(rgba(253, 251, 247, 0.75), rgba(253, 251, 247, 0.75)), url('inner-bg.jpg');
+    background-size: cover;
+    background-position: center;
+    position: relative;
+  }
+
+  /* حاوية بتلات الورد التساقطة */
+  .petals-container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 5;
+    overflow: hidden;
+  }
+
+  .petal {
+    position: absolute;
+    background: linear-gradient(135deg, #e6ca65 0%, #d4af37 50%, #aa820a 100%);
+    border-radius: 15px 0px 15px 0px;
+    opacity: 0.7;
+    animation: fall linear infinite;
+    filter: drop-shadow(0px 2px 4px rgba(0,0,0,0.1));
+  }
+
+  @keyframes fall {
+    0% { transform: translateY(-20px) rotate(0deg) scale(0.8); opacity: 0; }
+    10% { opacity: 0.75; }
+    90% { opacity: 0.75; }
+    100% { transform: translateY(100vh) rotate(360deg) scale(1.1); opacity: 0; }
+  }
+
+  .page-section {
+    min-height: 100vh;
+    scroll-snap-align: start;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 40px 24px;
+    text-align: center;
+    position: relative;
+    z-index: 10;
+  }
+
+  .content-wrapper {
+    width: 100%;
+    padding: 10px;
+    text-shadow: 0 1px 3px rgba(255, 255, 255, 0.8);
+  }
+
+  .bismillah { font-family: 'Amiri', serif; font-size: 1.5rem; color: #8c733e; margin-bottom: 15px; font-weight: 700; }
+  .invitation-text { font-size: 1.1rem; color: #333333; line-height: 1.9; margin-bottom: 20px; font-weight: 600; }
+  .couple-title { font-family: 'Aref Ruqaa', serif; font-size: 2.8rem; color: #1a1a1a; margin: 15px 0; }
+  .scroll-hint { font-size: 0.85rem; color: #a38139; margin-top: 25px; animation: bounce 2s infinite; font-weight: 700; }
+
+  @keyframes bounce {
+    0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
+    40% { transform: translateY(-8px); }
+    60% { transform: translateY(-4px); }
+  }
+
+  .date-badge {
+    display: inline-block;
+    background: rgba(212, 175, 55, 0.15);
+    border: 1px solid #c5a059;
+    padding: 10px 24px;
+    border-radius: 50px;
+    color: #5c471c;
+    font-weight: 700;
+    font-size: 1.15rem;
+    margin-top: 10px;
+  }
+
+  /* العداد التنازلي المباشر */
+  .countdown-container {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin-top: 25px;
+  }
+
+  .countdown-box {
+    background: rgba(255, 255, 255, 0.65);
+    border: 1px solid #d4af37;
+    border-radius: 12px;
+    padding: 10px;
+    min-width: 65px;
+    backdrop-filter: blur(4px);
+  }
+
+  .countdown-number { font-size: 1.5rem; font-weight: 700; color: #2c2c2c; }
+  .countdown-label { font-size: 0.75rem; color: #8c733e; margin-top: 2px; font-weight: 600; }
+
+  /* تصميم نموذج التهاني */
+  .wish-form {
+    width: 100%;
+    margin-top: 15px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .wish-input, .wish-textarea {
+    width: 100%;
+    padding: 12px 16px;
+    border: 1px solid #d4af37;
+    border-radius: 12px;
+    background: rgba(255, 255, 255, 0.85);
+    font-family: 'Cairo', sans-serif;
+    font-size: 0.95rem;
+    color: #333;
+    outline: none;
+    backdrop-filter: blur(4px);
+  }
+
+  .wish-textarea {
+    height: 90px;
+    resize: none;
+  }
+
+  .wish-input:focus, .wish-textarea:focus {
+    border-color: #aa820a;
+    box-shadow: 0 0 8px rgba(212, 175, 55, 0.4);
+  }
+
+  .btn-action {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    background: linear-gradient(135deg, #d4af37 0%, #aa820a 100%);
+    color: white;
+    text-decoration: none;
+    padding: 14px 28px;
+    border-radius: 50px;
+    font-weight: 700;
+    font-size: 1.05rem;
+    box-shadow: 0 8px 20px rgba(170, 130, 10, 0.25);
+    border: none;
+    cursor: pointer;
+    width: 100%;
+    margin-top: 10px;
+  }
+
+  .audio-control {
+    position: absolute;
+    top: 15px;
+    left: 15px;
+    z-index: 30;
+    background: rgba(255,255,255,0.85);
+    border: 1px solid #d4af37;
+    border-radius: 50%;
+    width: 38px;
+    height: 38px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+  }
+</style>
+</head>
+<body>
+
+  <div class="mobile-container" id="container">
+    
+    <div class="audio-control" id="audioBtn">🎵</div>
+
+    <!-- الغلاف الخارجي -->
+    <div class="door-left"></div>
+    <div class="door-right"></div>
+
+    <div class="interactive-seal" id="seal">
+      <div class="seal-names">
+        منار
+        <span>&amp;</span>
+        عبدالله
+      </div>
+      <div class="seal-btn">اضغط لفتح الدعوة ✨</div>
+    </div>
+
+    <!-- المحتوى الداخلي -->
+    <div class="main-content">
+      
+      <!-- حاوية بتلات الورد المتحركة -->
+      <div class="petals-container" id="petalsContainer"></div>
+
+      <!-- الصفحة الأولى: الدعاء والترحيب -->
+      <section class="page-section">
+        <div class="content-wrapper">
+          <div class="bismillah">بسم الله الرحمن الرحيم</div>
+          <p style="font-family:'Amiri', serif; font-size:1.25rem; color:#8c733e; margin-bottom:15px; font-weight:700;">
+            "وَمِنْ آيَاتِهِ أَنْ خَلَقَ لَكُم مِّنْ أَنفُسِكُمْ أَزْوَاجًا لِّتَسْكُنُوا إِلَيْهَا وَجَعَلَ بَيْنَكُم مَّوَدَّةً وَرَحْمَةً"
+          </p>
+          <p class="invitation-text">
+            يسرنا ويسعدنا دعوتكم لحضور حفل زفافنا وتكتمل فرحتنا بوجودكم ومشاركتكم أجمَل لحظات العمر.
+          </p>
+          <div class="couple-title">منار &amp; عبدالله</div>
+          <div class="scroll-hint">اسحبي للأسفل لرؤية التفاصيل ↓</div>
+        </div>
+      </section>
+
+      <!-- الصفحة الثانية: التاريخ والعداد التنازلي -->
+      <section class="page-section">
+        <div class="content-wrapper">
+          <h2 style="font-family:'Aref Ruqaa', serif; font-size:2.2rem; color:#2c2c2c; margin-bottom:10px;">موعد الحفل</h2>
+          <p class="invitation-text" style="margin-bottom:10px;">ننتظركم بشوق في يومنا المميز</p>
+          
+          <div class="date-badge">
+            🗓 الجمعة، 28 أغسطس 2026م
+          </div>
+
+          <!-- العداد التنازلي -->
+          <div class="countdown-container">
+            <div class="countdown-box">
+              <div class="countdown-number" id="days">0</div>
+              <div class="countdown-label">يوم</div>
+            </div>
+            <div class="countdown-box">
+              <div class="countdown-number" id="hours">0</div>
+              <div class="countdown-label">ساعة</div>
+            </div>
+            <div class="countdown-box">
+              <div class="countdown-number" id="minutes">0</div>
+              <div class="countdown-label">دقيقة</div>
+            </div>
+            <div class="countdown-box">
+              <div class="countdown-number" id="seconds">0</div>
+              <div class="countdown-label">ثانية</div>
+            </div>
+          </div>
+
+          <div class="scroll-hint">اسحبي للأسفل لموقع القاعة ↓</div>
+        </div>
+      </section>
+
+      <!-- الصفحة الثالثة: الموقع -->
+      <section class="page-section">
+        <div class="content-wrapper">
+          <h2 style="font-family:'Aref Ruqaa', serif; font-size:2.2rem; color:#2c2c2c; margin-bottom:15px;">موقع الحفل</h2>
+          <p style="color:#444; font-size:1.2rem; margin-bottom:10px; font-weight:600;">قاعة الرتز - مدينة الرياض</p>
+          <a href="https://maps.google.com" target="_blank" class="btn-action">
+            📍 موقع القاعة على الخريطة
+          </a>
+          <div class="scroll-hint">اسحبي للأسفل لكتابة تهنئة ↓</div>
+        </div>
+      </section>
+
+      <!-- الصفحة الرابعة: دفتر التهاني -->
+      <section class="page-section">
+        <div class="content-wrapper">
+          <h2 style="font-family:'Aref Ruqaa', serif; font-size:2.2rem; color:#2c2c2c; margin-bottom:10px;">دفتر التهاني ✨</h2>
+          <p class="invitation-text" style="margin-bottom:10px;">شاركونا كلماتكم الجملة وأمنياتكم اللطيفة</p>
+          
+          <div class="wish-form">
+            <input type="text" id="guestName" class="wish-input" placeholder="اسمكِ الكريمة..." />
+            <textarea id="guestMessage" class="wish-textarea" placeholder="اكتبي تهنئتكِ للعروسين هنا..."></textarea>
+            <button type="button" class="btn-action" onclick="sendWish()">
+              💌 إرسال التهنئة عبر الواتساب
+            </button>
+          </div>
+        </div>
+      </section>
+
+    </div>
+  </div>
+
+  <audio id="bgMusic" preload="auto">
+    <source src="song.mp3" type="audio/mpeg">
+  </audio>
+
+  <script>
+    const seal = document.getElementById('seal');
+    const container = document.getElementById('container');
+    const bgMusic = document.getElementById('bgMusic');
+    const audioBtn = document.getElementById('audioBtn');
+    let isPlaying = false;
+
+    // رقم جوال العروس المخصص لاستقبال التهاني (غيري الرقم هنا)
+    const bridePhoneNumber = "966500000000"; 
+
+    window.addEventListener('DOMContentLoaded', () => {
+      bgMusic.load();
+      createPetals();
+    });
+
+    seal.addEventListener('click', () => {
+      container.classList.add('open');
+      bgMusic.currentTime = 0;
+      const playPromise = bgMusic.play();
+      if (playPromise !== undefined) {
+        playPromise.then(() => {
+          isPlaying = true;
+          audioBtn.innerText = '🎵';
+        }).catch(error => { console.log("Autoplay failed:", error); });
+      }
+    });
+
+    audioBtn.addEventListener('click', () => {
+      if (isPlaying) {
+        bgMusic.pause();
+        isPlaying = false;
+        audioBtn.innerText = '🔇';
+      } else {
+        bgMusic.play();
+        isPlaying = true;
+        audioBtn.innerText = '🎵';
+      }
+    });
+
+    // دالة إرسال التهنئة عبر الواتساب
+    function sendWish() {
+      const name = document.getElementById('guestName').value.trim();
+      const message = document.getElementById('guestMessage').value.trim();
+
+      if (!name || !message) {
+        alert('لطفاً اكتبي اسمكِ والتهنئة أولاً ✨');
+        return;
+      }
+
+      const fullText = `ألف مبروك للعروسين منار وعبدالله ✨\n\nمن: ${name}\nالتهنئة: ${message}`;
+      const whatsappUrl = `https://wa.me/${bridePhoneNumber}?text=${encodeURIComponent(fullText)}`;
+      
+      window.open(whatsappUrl, '_blank');
+    }
+
+    // توليد بتلات الورد
+    function createPetals() {
+      const container = document.getElementById('petalsContainer');
+      const numberOfPetals = 18;
+
+      for (let i = 0; i < numberOfPetals; i++) {
+        const petal = document.createElement('div');
+        petal.classList.add('petal');
+        
+        const size = Math.random() * 12 + 10;
+        const left = Math.random() * 100;
+        const duration = Math.random() * 6 + 7;
+        const delay = Math.random() * 8;
+
+        petal.style.width = `${size}px`;
+        petal.style.height = `${size * 1.3}px`;
+        petal.style.left = `${left}%`;
+        petal.style.animationDuration = `${duration}s`;
+        petal.style.animationDelay = `${delay}s`;
+
+        container.appendChild(petal);
+      }
+    }
+
+    // العداد التنازلي
+    const weddingDate = new Date("August 28, 2026 20:00:00").getTime();
+
+    function updateCountdown() {
+      const now = new Date().getTime();
+      const difference = weddingDate - now;
+
+      if (difference > 0) {
+        const days = Math.floor(difference / (1000 * 60 * 60 * 24));
+        const hours = Math.floor((difference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+        const minutes = Math.floor((difference % (1000 * 60 * 60)) / (1000 * 60));
+        const seconds = Math.floor((difference % (1000 * 60)) / 1000);
+
+        document.getElementById("days").innerText = days;
+        document.getElementById("hours").innerText = hours;
+        document.getElementById("minutes").innerText = minutes;
+        document.getElementById("seconds").innerText = seconds;
+      }
+    }
+
+    setInterval(updateCountdown, 1000);
+    updateCountdown();
+  </script>
+</body>
+</html>
